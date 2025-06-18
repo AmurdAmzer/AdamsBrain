@@ -8,7 +8,7 @@ AI-powered tutoring platform for West African students preparing for WASSCE exam
 - Mobile: React Native (coming soon)
 
 ## Development Status
-- [ ] Week 1: Project setup and basic structure
+- [x] Week 1: Project setup and basic structure
 - [ ] Week 2: Authentication and UI
 - [ ] Week 3: AI integration
 - [ ] Week 4: Testing and polish
