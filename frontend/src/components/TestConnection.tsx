@@ -2,72 +2,80 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-const TestConnection = () => {
-  const [message, setMessage] = useState('')
-  const [response, setResponse] = useState('')
-  const [loading, setLoading] = useState(false)
+interface ApiResponse {
+  message: string
+  timestamp: string
+  environment?: string
+  received?: string
+  response?: string
+}
 
-  const testConnection = async () => {
+const TestConnection = () => {
+  const [response, setResponse] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
+  const [message, setMessage] = useState<string>('')
+
+  const testGetRequest = async (): Promise<void> => {
     setLoading(true)
     try {
-      // Call your backend API
-      const result = await axios.get('http://localhost:5000/api/test')
+      const result = await axios.get<ApiResponse>('http://localhost:5000/api/test')
       setResponse(JSON.stringify(result.data, null, 2))
-    } catch (error) {
-      setResponse('Error: ' + error.message)
+    } catch (error: any) {
+      setResponse('Error: ' + (error.message || 'Unknown error'))
     }
     setLoading(false)
   }
 
-  const sendMessage = async () => {
+  const testPostRequest = async (): Promise<void> => {
+    if (!message) return
+    
     setLoading(true)
     try {
-      const result = await axios.post('http://localhost:5000/api/test', { 
+      const result = await axios.post<ApiResponse>('http://localhost:5000/api/test', { 
         message: message 
       })
       setResponse(JSON.stringify(result.data, null, 2))
-    } catch (error) {
-      setResponse('Error: ' + error.message)
+    } catch (error: any) {
+      setResponse('Error: ' + (error.message || 'Unknown error'))
     }
     setLoading(false)
   }
 
   return (
-    <div className="p-6 max-w-md mx-auto bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4">Test Backend Connection</h2>
+    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold mb-4 text-center">
+        🔗 Test Backend Connection
+      </h2>
       
-      {/* Test GET request */}
       <button 
-        onClick={testConnection}
+        onClick={testGetRequest}
         disabled={loading}
-        className="bg-blue-500 text-white px-4 py-2 rounded mb-4 w-full"
+        className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mb-4 disabled:opacity-50"
       >
-        {loading ? 'Testing...' : 'Test GET Request'}
+        {loading ? '⏳ Testing...' : '📥 Test GET Request'}
       </button>
 
-      {/* Test POST request */}
       <div className="mb-4">
         <input
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Enter a message"
-          className="border p-2 w-full rounded mb-2"
+          placeholder="Type a message to send..."
+          className="w-full p-2 border border-gray-300 rounded mb-2"
         />
         <button 
-          onClick={sendMessage}
+          onClick={testPostRequest}
           disabled={loading || !message}
-          className="bg-green-500 text-white px-4 py-2 rounded w-full"
+          className="w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded disabled:opacity-50"
         >
-          Send POST Request
+          📤 Send POST Request
         </button>
       </div>
 
-      {/* Response display */}
       {response && (
         <div className="mt-4">
-          <h3 className="font-bold">Response:</h3>
-          <pre className="bg-gray-100 p-2 rounded text-sm overflow-auto">
+          <h3 className="font-bold text-gray-700 mb-2">📋 Backend Response:</h3>
+          <pre className="bg-gray-100 p-3 rounded text-xs overflow-auto max-h-64">
             {response}
           </pre>
         </div>
