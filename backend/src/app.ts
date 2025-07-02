@@ -3,8 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import testRoutes from './routes/test'
-//import studentRoutes from './routes/students'
-const studentRoutes = require('./routes/students') // Use require for CommonJS compatibility  
+import studentRoutes from './routes/students'
 
 // Load environment variables from .env file
 dotenv.config()
