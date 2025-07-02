@@ -23,8 +23,9 @@ export default function LoginPage() {
         await signIn(email, password);
       }
       router.push('/dashboard'); // Redirect after success
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Login failed';
+      setError(errorMessage);
     }
   };
 

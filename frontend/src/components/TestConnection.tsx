@@ -20,8 +20,9 @@ const TestConnection = () => {
     try {
       const result = await axios.get<ApiResponse>('http://localhost:5000/api/test')
       setResponse(JSON.stringify(result.data, null, 2))
-    } catch (error: any) {
-      setResponse('Error: ' + (error.message || 'Unknown error'))
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+      setResponse('Error: ' + errorMessage)
     }
     setLoading(false)
   }
@@ -35,12 +36,14 @@ const TestConnection = () => {
         message: message 
       })
       setResponse(JSON.stringify(result.data, null, 2))
-    } catch (error: any) {
-      setResponse('Error: ' + (error.message || 'Unknown error'))
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+      setResponse('Error: ' + errorMessage)
     }
     setLoading(false)
   }
 
+  // Rest of your component remains the same...
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-4 text-center">
