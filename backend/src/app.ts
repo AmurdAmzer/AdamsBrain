@@ -3,7 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import testRoutes from './routes/test'
-
+//import studentRoutes from './routes/students'
+const studentRoutes = require('./routes/students') // Use require for CommonJS compatibility  
 
 // Load environment variables from .env file
 dotenv.config()
@@ -15,14 +16,14 @@ const PORT = process.env.PORT || 5000;
 // MongoDB Connection Function 
 const connectDB = async () => {
   try {
-    console.log('🔄 Connecting to MongoDB...')
+    console.log('Connecting to MongoDB...')
     
     const conn = await mongoose.connect(process.env.MONGODB_URI as string)
     
-    console.log(`✅ MongoDB Connected: ${conn.connection.host}`)
-    console.log(`📊 Database Name: ${conn.connection.name}`)
+    console.log(`MongoDB Connected: ${conn.connection.host}`)
+    console.log(`Database Name: ${conn.connection.name}`)
   } catch (error) {
-    console.error('❌ MongoDB connection error:', error)
+    console.error('MongoDB connection error:', error)
     process.exit(1) // Exit if database connection fails
   }
 }
@@ -33,6 +34,7 @@ app.use(express.json())   // Parse JSON from requests
 
 // Routes
 app.use('/api/test', testRoutes)
+app.use('/api/students', studentRoutes)
 
 
 // Basic health check

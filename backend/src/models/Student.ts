@@ -1,23 +1,6 @@
-import mongoose, { Document, Schema } from 'mongoose'
+import mongoose from 'mongoose'
 
-// Define what a Student looks like
-export interface IStudent extends Document {
-  firebaseUid: string
-  email: string
-  name: string
-  grade: 'SS1' | 'SS2' | 'SS3'
-  subjects: string[]
-  preferences: {
-    difficulty: string
-    studyTime: number
-    notifications: boolean
-  }
-  createdAt: Date
-  lastActive: Date
-}
-
-// Create the database blueprint
-const StudentSchema: Schema = new Schema({
+const StudentSchema = new mongoose.Schema({
   firebaseUid: { 
     type: String, 
     required: true, 
@@ -34,12 +17,9 @@ const StudentSchema: Schema = new Schema({
   },
   grade: { 
     type: String, 
-    enum: ['SS1', 'SS2', 'SS3'], 
     required: true 
   },
-  subjects: [{ 
-    type: String 
-  }],
+  subjects: [String],
   preferences: {
     difficulty: { 
       type: String, 
@@ -64,4 +44,6 @@ const StudentSchema: Schema = new Schema({
   }
 })
 
-export default mongoose.model<IStudent>('Student', StudentSchema)
+const Student = mongoose.model('Student', StudentSchema)
+
+export default Student

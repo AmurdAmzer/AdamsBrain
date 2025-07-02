@@ -60,6 +60,15 @@ const RegisterForm = () => {
 
       setMessage('✅ Account created successfully!')
       
+      // Clear form
+      setFormData({
+        name: '',
+        email: '',
+        password: '',
+        grade: 'SS1',
+        subjects: []
+      })
+      
     } catch (error: any) {
       setMessage('❌ Error: ' + error.message)
     }
@@ -164,7 +173,9 @@ const RegisterForm = () => {
 
       {/* Message */}
       {message && (
-        <div className="mt-4 p-3 rounded text-center">
+        <div className={`mt-4 p-3 rounded text-center ${
+          message.includes('✅') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+        }`}>
           {message}
         </div>
       )}
