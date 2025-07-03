@@ -63,7 +63,9 @@ export default function Dashboard() {
           {/* Quick Actions Card */}
           <div className="bg-white p-6 rounded-lg shadow">
             <h3 className="font-semibold text-gray-900 mb-4">Quick Actions</h3>
-            <button className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+            <button 
+              onClick={() => router.push('/chat')}
+              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
               Ask a Question
             </button>
           </div>
