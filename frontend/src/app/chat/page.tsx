@@ -13,13 +13,13 @@ export default function ChatPage() {
         id: string
         text: string
         sender: 'user' | 'ai'
-        timestap: Date
+        timestamp: Date
     }
 
     //State to store messages
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputText, setInputText] = useState('');
-    const [isloading, setIsLoading] = useState(false);  
+    const [isLoading, setIsLoading] = useState(false);  
     
     //Redirect to login if user is not authenticated
     useEffect(() => {
