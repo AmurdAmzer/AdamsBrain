@@ -32,16 +32,14 @@ export default function Dashboard() {
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-[#183D3D]">AdamsBrain</h1>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-600">{user?.email}</span>
-              <button 
+            <h1 className="text-2xl font-bold text-gray-900">AdamsBrain</h1>
+            <span className="text-sm text-gray-600">{user?.email}</span>
+            <button 
                 onClick={handleLogout}
                 className="text-sm bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors"
               >
                 Logout
               </button>
-            </div>
           </div>
         </div>
       </header>
@@ -50,22 +48,22 @@ export default function Dashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Quick Stats Card */}
-          <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-            <h3 className="font-semibold text-[#040D12] mb-2">Study Stats</h3>
-            <p className="text-3xl font-bold text-[#183D3D]">0</p>
-            <p className="text-sm text-[#5C8374]">Questions Asked</p>
+          <div className="bg-white p-6 rounded-lg shadow card">
+            <h3 className="font-semibold text-gray-900 mb-2">Study Stats</h3>
+            <p className="text-3xl font-bold text-blue-600">0</p>
+            <p className="text-sm text-gray-600">Questions Asked</p>
           </div>
 
           {/* Recent Activity Card */}
-          <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-            <h3 className="font-semibold text-[#040D12] mb-2">Recent Activity</h3>
-            <p className="text-[#5C8374]">No recent activity</p>
+          <div className="bg-white p-6 rounded-lg shadow">
+            <h3 className="font-semibold text-gray-900 mb-2">Recent Activity</h3>
+            <p className="text-gray-600">No recent activity</p>
           </div>
 
           {/* Quick Actions Card */}
-          <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-            <h3 className="font-semibold text-[#040D12] mb-4">Quick Actions</h3>
-            <button className="w-full bg-[#183D3D] text-white py-2 rounded hover:bg-[#040D12] transition-colors">
+          <div className="bg-white p-6 rounded-lg shadow">
+            <h3 className="font-semibold text-gray-900 mb-4">Quick Actions</h3>
+            <button className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
               Ask a Question
             </button>
           </div>
