@@ -31,6 +31,10 @@ export default function ChatPage() {
     if (loading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
     
     return ( 
-        <div> Chat Page </div>
+        <div className='min--h-screen bg-gray-50 flex flex-col'>
+            {/* We@apos;ll add header here */}
+            {/* We@apos;ll add messages area here */}
+            {/* We@apos;ll add input area here */} 
+        </div>
     )
 }
