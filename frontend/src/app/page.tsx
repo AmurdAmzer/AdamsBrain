@@ -80,7 +80,7 @@ export default function LandingPage() {
                 <span className="text-2xl font-bold text-blue-600">2</span>
               </div>
               <h4 className="font-semibold mb-2">Ask Questions</h4>
-              <p className="text-gray-600">Chat with AI tutor anytime</p>
+              <p className="text-gray-600">Chat with Adams, your AI tutor, anytime</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
