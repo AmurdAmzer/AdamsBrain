@@ -68,7 +68,7 @@ export default function ChatPage() {
     };
 
     return ( 
-        <div className='h-screen bg-gray-50 flex flex-col overflow-hidden'>
+        <div className='h-[100dvh] bg-gray-50 flex flex-col overflow-hidden'>
             {/* Header section */}
             <header className="bg-white shadow-sm border-b">
                 <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
