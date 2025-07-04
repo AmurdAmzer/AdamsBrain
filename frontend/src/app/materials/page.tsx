@@ -7,7 +7,7 @@ type Material = {
     id: string
     title: string
     subject: 'English' | 'Mathematics'
-    type: 'past_paper' | 'textbook'
+    type: 'past_questions' | 'textbook'
     year: number
     downloadUrl: string
     isDownloaded?: boolean
@@ -16,24 +16,24 @@ type Material = {
 export default function MaterialsPage() {
     // State for filters and materials
     const [selectedSubject, setSelectedSubject] = useState<'all' | 'English' | 'Mathematics'>('all')
-    const [selectedType, setSelectedType] = useState<'all' | 'past_paper' | 'textbook'>('all')
+    const [selectedType, setSelectedType] = useState<'all' | 'past_questions' | 'textbook'>('all')
     
     // Mock data
     const [materials] = useState<Material[]>([
         {
             id: '1',
-            title: 'WASSCE English Past Paper',
+            title: 'WASSCE English Past questions',
             subject: 'English',
-            type: 'past_paper',
+            type: 'past_questions',
             year: 2023,
             downloadUrl: '#',
             isDownloaded: false
         },
         {
             id: '2',
-            title: 'WASSCE Mathematics Past Paper',
+            title: 'WASSCE Mathematics Past questions',
             subject: 'Mathematics',
-            type: 'past_paper',
+            type: 'past_questions',
             year: 2023,
             downloadUrl: '#',
             isDownloaded: true
@@ -54,7 +54,7 @@ export default function MaterialsPage() {
                 <div className="flex flex-wrap gap-4 mb-6">
                     <select 
                         value={selectedSubject}
-                        onChange={(e) => setSelectedSubject(e.target.value as any)}
+                        onChange={(e) => setSelectedSubject(e.target.value as 'all' | 'English' | 'Mathematics')}
                         className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
                         <option value="all">All Subjects</option>
@@ -64,12 +64,12 @@ export default function MaterialsPage() {
                     
                     <select 
                         value={selectedType}
-                        onChange={(e) => setSelectedType(e.target.value as any)}
+                        onChange={(e) => setSelectedType(e.target.value as 'all' | 'past_questions' | 'textbook')}
                         className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     >
                         <option value="all">All Types</option>
-                        <option value="past_paper">Past Papers</option>
-                        <option value="textbook">Textbooks</option>
+                        <option value="past_questions">Past Questions</option>
+                        <option value="textbook">Notes</option>
                     </select>
                 </div>
                 
@@ -86,7 +86,7 @@ export default function MaterialsPage() {
                                 <div className="text-sm text-gray-600 space-y-1">
                                     <p>Subject: {material.subject}</p>
                                     <p>Year: {material.year}</p>
-                                    <p>Type: {material.type === 'past_paper' ? 'Past Paper' : 'Textbook'}</p>
+                                    <p>Type: {material.type === 'past_questions' ? 'Past questions' : 'Textbook'}</p>
                                 </div>
                                 <button className={`mt-4 w-full py-2 rounded ${
                                     material.isDownloaded 

@@ -8,7 +8,7 @@ export default function ProfilePage() {
     
     // State for profile form
     const [displayName, setDisplayName] = useState('')
-    const [grade, setGrade] = useState<'SS1' | 'SS2' | 'SS3'>('SS1')
+    const [grade, setGrade] = useState<'SHS1' | 'SHS2' | 'SHS3'>('SHS1')
     const [subjects, setSubjects] = useState({
         english: true,
         mathematics: true
@@ -27,7 +27,7 @@ export default function ProfilePage() {
         // Week 3: Save to database
         setTimeout(() => {
             setIsSaving(false)
-            alert('Profile updated! (Not really - Week 3 will save to database)')
+            alert('Profile updated! (Not really - will work on saving it to the database)')
         }, 1000)
     }
     
@@ -69,12 +69,12 @@ export default function ProfilePage() {
                             </label>
                             <select
                                 value={grade}
-                                onChange={(e) => setGrade(e.target.value as any)}
+                                onChange={(e) => setGrade(e.target.value as 'SHS1' | 'SHS2' | 'SHS3')}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                             >
-                                <option value="SS1">SS1 (Senior Secondary 1)</option>
-                                <option value="SS2">SS2 (Senior Secondary 2)</option>
-                                <option value="SS3">SS3 (Senior Secondary 3)</option>
+                                <option value="SHS1">SHS1 (Senior Secondary 1)</option>
+                                <option value="SHS2">SHS2 (Senior Secondary 2)</option>
+                                <option value="SHS3">SHS3 (Senior Secondary 3)</option>
                             </select>
                         </div>
                         

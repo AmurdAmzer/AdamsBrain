@@ -1,5 +1,6 @@
 'use client'    
 import { useState } from 'react'
+import { useEffect } from 'react'
 import AppLayout from '@/components/layout/AppLayout'
 
 export default function ChatPage() {
@@ -15,7 +16,15 @@ export default function ChatPage() {
     const [messages, setMessages] = useState<Message[]>([])
     const [inputText, setInputText] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const [currentSubject, setCurrentSubject] = useState<'English' | 'Mathematics'>('English')
     
+    useEffect(() => {
+        const savedSubject = localStorage.getItem('selectedSubject') as 'English' | 'Mathematics'
+        if (savedSubject) {
+            setCurrentSubject(savedSubject)
+        }
+    }, [])
+
     const handleSend = () => {
         if (!inputText.trim()) return
     
@@ -53,7 +62,7 @@ export default function ChatPage() {
                         {messages.length === 0 ? (
                             <div className="text-center text-gray-500 mt-8">
                                 <p>👋 Hi! I&apos;m Adams.</p>
-                                <p>Ask me anything about English or Mathematics!</p>
+                                <p>Ask me anything about {currentSubject}!</p>
                             </div>
                         ) : (
                             messages.map((message) => (
