@@ -145,7 +145,7 @@ export default function LandingPage() {
             </div>
             <div className="bg-white p-6 rounded-lg shadow">
               <p className="text-gray-600 mb-4">
-              &quot;I can study even when there's no internet. It's amazing!&quot;
+              &quot;I can study even when there&apos;s no internet. It&apos;s amazing!&quot;
               </p>
               <p className="font-semibold">- John, Accra</p>
             </div>
