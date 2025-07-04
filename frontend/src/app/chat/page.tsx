@@ -78,7 +78,7 @@ export default function ChatPage() {
             {/* We'll add messages area here */}
             
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto px-4 py-6">
+            <div className="flex-1 overflow-y-auto px-4 py-6 min-h-0">
                 <div className="max-w-4xl mx-auto space-y-4">
                     {messages.length === 0 ? (
                         <div className="text-center text-gray-500 mt-8">
