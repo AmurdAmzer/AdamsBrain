@@ -30,9 +30,37 @@ export default function ChatPage() {
 
     if (loading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
     
+    const handleSend = () => {
+        if (!inputText.trim()) return;
+    
+        // Add user message
+        const userMessage: Message = {
+            id: Date.now().toString(),
+            text: inputText,
+            sender: 'user',
+            timestamp: new Date()
+        };
+        
+        setMessages(prev => [...prev, userMessage]);
+        setInputText('');
+        setIsLoading(true);
+    
+        // Simulate AI response
+        setTimeout(() => {
+            const aiMessage: Message = {
+                id: (Date.now() + 1).toString(),
+                text: "I'm your AI tutor! In Week 3, I'll be connected to GPT-4.",
+                sender: 'ai',
+                timestamp: new Date()
+            };
+            setMessages(prev => [...prev, aiMessage]);
+            setIsLoading(false);
+        }, 1000);
+    };
+
     return ( 
-        <div className='min--h-screen bg-gray-50 flex flex-col'>
-            {/* We@apos;ll add header here */}
+        <div className='min-h-screen bg-gray-50 flex flex-col'>
+            {/* We'll add header here */}
             {/* Header */}
             <header className="bg-white shadow-sm border-b">
                 <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -47,7 +75,7 @@ export default function ChatPage() {
             </header>
             
             
-            {/* We@apos;ll add messages area here */}
+            {/* We'll add messages area here */}
             
             {/* Messages Area */}
             <div className="flex-1 overflow-y-auto px-4 py-6">
@@ -58,12 +86,34 @@ export default function ChatPage() {
                             <p>Ask me anything about English or Mathematics!</p>
                         </div>
                     ) : (
-                        <div>Messages will appear here</div>
+                        messages.map((message) => (
+                            <div
+                                key={message.id}
+                                className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                            >
+                                <div
+                                    className={`max-w-2xl px-4 py-2 rounded-lg ${
+                                        message.sender === 'user'
+                                            ? 'bg-blue-600 text-white'
+                                            : 'bg-white border border-gray-200'
+                                    }`}
+                                >
+                                    <p>{message.text}</p>
+                                </div>
+                            </div>
+                        ))
+                    )}
+                    {isLoading && (
+                        <div className="flex justify-start">
+                            <div className="bg-white border border-gray-200 px-4 py-2 rounded-lg">
+                                <p className="text-gray-500">Thinking...</p>
+                            </div>
+                        </div>
                     )}
                 </div>
             </div>
             
-            {/* We@apos;ll add input area here */} 
+            {/* We'll add input area here */} 
             {/* Input Area */}
             <div className="bg-white border-t px-4 py-4">
                 <div className="max-w-4xl mx-auto flex gap-2">
@@ -71,11 +121,12 @@ export default function ChatPage() {
                         type="text"
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
+                        onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                         placeholder="Type your question..."
                         className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     <button
-                        onClick={() => console.log('Send clicked!')}
+                        onClick={handleSend}
                         disabled={!inputText.trim()}
                         className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
