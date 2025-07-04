@@ -1,12 +1,20 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import AppLayout from '@/components/layout/AppLayout'
 import { useRouter } from 'next/navigation'
+
 
 export default function Dashboard() {
   const router = useRouter()
   const [showSubjectModal, setShowSubjectModal] = useState(false)
   const [selectedSubject, setSelectedSubject] = useState<'English' | 'Mathematics' | null>(null)
+
+  useEffect(() => {
+    const savedSubject = localStorage.getItem('selectedSubject') as 'English' | 'Mathematics' | null
+    if (savedSubject) {
+      setSelectedSubject(savedSubject)
+    }
+  }, [])
 
   const handleSubjectSelect = (subject: 'English' | 'Mathematics') => {
     setSelectedSubject(subject)
@@ -48,7 +56,15 @@ export default function Dashboard() {
             </button>
           </div>
         </div>
+
+        {selectedSubject && (
+        <div className="mt-4 text-center text-sm text-gray-600">
+          Current subject: {selectedSubject}
+        </div>
+      )}
       </main>
+
+      
 
       {/* Subject Selection Modal */}
       {showSubjectModal && (
