@@ -83,7 +83,11 @@ export default function ChatPage() {
                                 <button
                                     onClick={handleSend}
                                     disabled={!inputText.trim()}
-                                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-gray-600 disabled:text-gray-300 disabled:cursor-not-allowed transition-colors"
+                                    className={`absolute right-2 top-1/2 -translate-y-1/2 p-2 transition-colors ${
+                                        inputText.trim() 
+                                            ? 'text-blue-600 hover:text-blue-700' 
+                                            : 'text-blue-200 hover:text-blue-400'
+                                    } disabled:text-blue-200 disabled:cursor-not-allowed`}
                                 >
                                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -139,7 +143,11 @@ export default function ChatPage() {
                                     <button
                                         onClick={handleSend}
                                         disabled={!inputText.trim() || isLoading}
-                                        className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-gray-600 disabled:text-gray-300 disabled:cursor-not-allowed transition-colors"
+                                        className={`absolute right-2 top-1/2 -translate-y-1/2 p-1.5 transition-colors ${
+                                            inputText.trim() 
+                                                ? 'text-blue-600 hover:text-blue-700' 
+                                                : 'text-blue-200 hover:text-blue-400'
+                                        } disabled:text-blue-200 disabled:cursor-not-allowed`}
                                     >
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

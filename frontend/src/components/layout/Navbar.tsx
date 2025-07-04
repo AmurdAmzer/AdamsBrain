@@ -61,12 +61,6 @@ export default function Navbar() {
                     
                     {/* Desktop User Menu */}
                     <div className="hidden md:flex items-center gap-4">
-                        <button
-                            onClick={() => router.push('/profile')}
-                            className="text-sm text-gray-600 hover:text-gray-900"
-                        >
-                            {user?.email}
-                        </button>
                         <button 
                             onClick={handleLogout}
                             className="text-sm bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors"
@@ -111,15 +105,6 @@ export default function Navbar() {
                                 {item.label}
                             </button>
                         ))}
-                        <button
-                            onClick={() => {
-                                router.push('/profile')
-                                setMobileMenuOpen(false)
-                            }}
-                            className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                        >
-                            Profile
-                        </button>
                         <div className="px-3 py-2 text-sm text-gray-500">
                             {user?.email}
                         </div>
