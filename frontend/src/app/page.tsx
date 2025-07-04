@@ -139,19 +139,19 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg shadow">
               <p className="text-gray-600 mb-4">
-                "AdamsBrain helped me improve my Math scores from C6 to A1!"
+              &quot;AdamsBrain helped me improve my Math scores from C6 to A1!&quot;
               </p>
               <p className="font-semibold">- Sarah, Lagos</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow">
               <p className="text-gray-600 mb-4">
-                "I can study even when there's no internet. It's amazing!"
+              &quot;I can study even when there's no internet. It's amazing!&quot;
               </p>
               <p className="font-semibold">- John, Accra</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow">
               <p className="text-gray-600 mb-4">
-                "The AI tutor explains better than my teachers sometimes."
+              &quot;The AI tutor explains better than my teachers sometimes.&quot;
               </p>
               <p className="font-semibold">- Mary, Freetown</p>
             </div>
