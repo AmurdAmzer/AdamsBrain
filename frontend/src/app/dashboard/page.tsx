@@ -1,54 +1,20 @@
 'use client'
-import { useAuth } from '@/contexts/AuthContext'
+import { useState } from 'react'
+import AppLayout from '@/components/layout/AppLayout'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
-import { signOut } from 'firebase/auth'
-import { auth } from '@/lib/firebase'
 
 export default function Dashboard() {
-  const { user, loading } = useAuth()
   const router = useRouter()
+  const [showSubjectModal, setShowSubjectModal] = useState(false)
+  const [selectedSubject, setSelectedSubject] = useState<'English' | 'Mathematics' | null>(null)
 
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push('/login')
-    }
-  }, [user, loading, router])
-
-  const handleLogout = async () => {
-    try {
-      await signOut(auth)
-      router.push('/login')
-    } catch (error) {
-      console.error('Logout error:', error)
-    }
-  }
-
-  if (loading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-900">AdamsBrain</h1>
-            <span className="text-sm text-gray-600">{user?.email}</span>
-            <button 
-                onClick={handleLogout}
-                className="text-sm bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors"
-              >
-                Logout
-              </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
+    <AppLayout>
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Quick Stats Card */}
-          <div className="bg-white p-6 rounded-lg shadow items-center">
+          <div className="bg-white p-6 rounded-lg shadow">
             <h3 className="font-semibold text-gray-900 mb-2">Study Stats</h3>
             <p className="text-3xl font-bold text-blue-600">0</p>
             <p className="text-sm text-gray-600">Questions Asked</p>
@@ -70,7 +36,36 @@ export default function Dashboard() {
             </button>
           </div>
         </div>
+
+        {/* Modal component*/}
+        {showSubjectModal && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div className="bg-white p-6 rounded-lg">
+                    <h2 className="text-lg font-semibold mb-4">Choose a Subject</h2>
+                    <div className="space-y-2">
+                        <button 
+                            onClick={() => {
+                                setSelectedSubject('English')
+                                router.push('/chat')
+                            }}
+                            className="w-full p-4 border rounded hover:bg-gray-50"
+                        >
+                            English
+                        </button>
+                        <button 
+                            onClick={() => {
+                                setSelectedSubject('Mathematics')
+                                router.push('/chat')
+                            }}
+                            className="w-full p-4 border rounded hover:bg-gray-50"
+                        >
+                            Mathematics
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )}
       </main>
-    </div>
+    </AppLayout>
   )
 }
