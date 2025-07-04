@@ -60,7 +60,7 @@ export default function ChatPage() {
 
     return ( 
         <div className='min-h-screen bg-gray-50 flex flex-col'>
-            {/* We'll add header here */}
+            {/* We&apos;ll add header here */}
             {/* Header */}
             <header className="bg-white shadow-sm border-b">
                 <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -82,7 +82,7 @@ export default function ChatPage() {
                 <div className="max-w-4xl mx-auto space-y-4">
                     {messages.length === 0 ? (
                         <div className="text-center text-gray-500 mt-8">
-                            <p>👋 Hi! I'm Adams.</p>
+                            <p>👋 Hi! I&apos;m Adams.</p>
                             <p>Ask me anything about English or Mathematics!</p>
                         </div>
                     ) : (
@@ -113,7 +113,7 @@ export default function ChatPage() {
                 </div>
             </div>
             
-            {/* We'll add input area here */} 
+            {/* We&apos;ll add input area here */} 
             {/* Input Area */}
             <div className="bg-white border-t px-4 py-4">
                 <div className="max-w-4xl mx-auto flex gap-2">
