@@ -49,7 +49,7 @@ export default function ChatPage() {
         setTimeout(() => {
             const aiMessage: Message = {
                 id: (Date.now() + 1).toString(),
-                text: "I'm your AI tutor! In Week 3, I'll be connected to GPT-4.",
+                text: "I'm your AI tutor! I'm waiting to be connected to GPT-4.",
                 sender: 'ai',
                 timestamp: new Date()
             };
