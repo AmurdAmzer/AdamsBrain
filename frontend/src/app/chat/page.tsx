@@ -44,7 +44,7 @@ export default function ChatPage() {
         setTimeout(() => {
             const aiMessage: Message = {
                 id: (Date.now() + 1).toString(),
-                text: "I'm your AI tutor! In Week 3, I'll be connected to GPT-4.",
+                text: "I'm your AI tutor! I'm waiting to be connected to GPT-4.",
                 sender: 'ai',
                 timestamp: new Date()
             }
@@ -56,62 +56,100 @@ export default function ChatPage() {
     return (
         <AppLayout>
             <div className='h-[calc(100vh-4rem)] flex flex-col'>
-                {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto px-4 py-6 min-h-0">
-                    <div className="max-w-4xl mx-auto space-y-4">
-                        {messages.length === 0 ? (
-                            <div className="text-center text-gray-500 mt-8">
-                                <p>👋 Hi! I&apos;m Adams.</p>
-                                <p>Ask me anything about {currentSubject}!</p>
+                {messages.length === 0 ? (
+                    // Centered layout when no messages
+                    <div className="flex-1 flex flex-col items-center justify-center px-4">
+                        <div className="w-full max-w-2xl -mt-32">
+                            <div className="text-center mb-8">
+                                <h1 className="text-3xl font-semibold text-gray-900 mb-2">
+                                    Chat with Adams
+                                </h1>
+                                <p className="text-gray-600">
+                                    Ask me anything about {currentSubject}!
+                                </p>
                             </div>
-                        ) : (
-                            messages.map((message) => (
-                                <div
-                                    key={message.id}
-                                    className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                            
+                            {/* Centered input with button inside */}
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    value={inputText}
+                                    onChange={(e) => setInputText(e.target.value)}
+                                    onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                                    placeholder="Type your question..."
+                                    className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+                                    autoFocus
+                                />
+                                <button
+                                    onClick={handleSend}
+                                    disabled={!inputText.trim()}
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-gray-600 disabled:text-gray-300 disabled:cursor-not-allowed transition-colors"
                                 >
+                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    // Regular chat layout when messages exist
+                    <>
+                        {/* Messages Area */}
+                        <div className="flex-1 overflow-y-auto px-4 py-6 min-h-0">
+                            <div className="max-w-3xl mx-auto space-y-4">
+                                {messages.map((message) => (
                                     <div
-                                        className={`max-w-2xl px-4 py-2 rounded-lg ${
-                                            message.sender === 'user'
-                                                ? 'bg-blue-600 text-white'
-                                                : 'bg-white border border-gray-200'
-                                        }`}
+                                        key={message.id}
+                                        className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                                     >
-                                        <p>{message.text}</p>
+                                        <div
+                                            className={`max-w-2xl px-4 py-2 rounded-lg ${
+                                                message.sender === 'user'
+                                                    ? 'bg-blue-600 text-white'
+                                                    : 'bg-white border border-gray-200'
+                                            }`}
+                                        >
+                                            <p>{message.text}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            ))
-                        )}
-                        {isLoading && (
-                            <div className="flex justify-start">
-                                <div className="bg-white border border-gray-200 px-4 py-2 rounded-lg">
-                                    <p className="text-gray-500">Thinking...</p>
+                                ))}
+                                {isLoading && (
+                                    <div className="flex justify-start">
+                                        <div className="bg-white border border-gray-200 px-4 py-2 rounded-lg">
+                                            <p className="text-gray-500">Thinking...</p>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        
+                        {/* Input Area at bottom - with max width */}
+                        <div className="bg-white border-t px-4 py-4">
+                            <div className="max-w-3xl mx-auto">
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        value={inputText}
+                                        onChange={(e) => setInputText(e.target.value)}
+                                        onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                                        placeholder="Type your question..."
+                                        className="w-full px-4 py-2 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                    <button
+                                        onClick={handleSend}
+                                        disabled={!inputText.trim() || isLoading}
+                                        className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-gray-600 disabled:text-gray-300 disabled:cursor-not-allowed transition-colors"
+                                    >
+                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
-                        )}
-                    </div>
-                </div>
-                
-                {/* Input Area */}
-                <div className="bg-white border-t px-4 py-4">
-                    <div className="max-w-4xl mx-auto flex gap-2">
-                        <input
-                            type="text"
-                            value={inputText}
-                            onChange={(e) => setInputText(e.target.value)}
-                            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                            placeholder="Type your question..."
-                            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                        <button
-                            onClick={handleSend}
-                            disabled={!inputText.trim()}
-                            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            Send
-                        </button>
-                    </div>
-                </div>
+                        </div>
+                    </>
+                )}
             </div>
         </AppLayout>
     )

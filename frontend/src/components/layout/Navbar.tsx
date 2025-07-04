@@ -25,6 +25,7 @@ export default function Navbar() {
         { label: 'Dashboard', path: '/dashboard' },
         { label: 'Chat', path: '/chat' },
         { label: 'Materials', path: '/materials' },
+        { label: 'Profile', path: '/profile' },
     ]
     
     return (
