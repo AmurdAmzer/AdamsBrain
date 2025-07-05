@@ -15,7 +15,7 @@ export default function AppLayout({ children }: Props) {
     // Protect all pages using this layout
     useEffect(() => {
         if (!loading && !user) {
-            router.push('/login')
+            router.push('/')
         }
     }, [user, loading, router])
     
