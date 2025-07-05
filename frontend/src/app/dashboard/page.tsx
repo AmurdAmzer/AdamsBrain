@@ -85,10 +85,10 @@ export default function Dashboard() {
 
       {/* Subject Selection Modal */}
       {showSubjectModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-md w-full p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Choose a Subject</h2>
-            <p className="text-gray-600 mb-6">Select which subject you want to study</p>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl transform transition-all">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Choose Your Subject</h2>
+            <p className="text-gray-600 mb-8">What would you like to study today?</p>
             
             <div className="space-y-3">
               <button 
