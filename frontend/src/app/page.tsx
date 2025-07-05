@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { useEffect } from 'react'
+import Link from 'next/link'
 
 export default function LandingPage() {
   const router = useRouter()
@@ -16,7 +17,7 @@ export default function LandingPage() {
     }
   }, [user, router])
 
-  const handleSubjectSelect = (subject: 'English' | 'Mathematics') => {
+  const handleSubjectSelect = (subject: 'English' | 'Mathematics' | 'Science' | 'Social') => {
     localStorage.setItem('selectedSubject', subject)
     router.push('/signup')
   }
@@ -170,8 +171,12 @@ export default function LandingPage() {
             <div>
               <h4 className="font-bold mb-4">Quick Links</h4>
               <div className="space-y-2">
-                <a href="/privacy" className="block text-gray-400 hover:text-white">Privacy Policy</a>
-                <a href="/terms" className="block text-gray-400 hover:text-white">Terms of Service</a>
+              <Link href="/privacy" className="block text-gray-400 hover:text-white">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="block text-gray-400 hover:text-white">
+                Terms of Service
+              </Link>
               </div>
             </div>
             <div>
@@ -194,19 +199,39 @@ export default function LandingPage() {
             
             <div className="space-y-3">
               <button 
+                onClick={() => handleSubjectSelect('Mathematics')}
+                className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
+              >
+                <h3 className="font-semibold text-gray-900">Core Mathematics</h3>
+                <p className="text-sm text-gray-600">Set, Functions, Algebra, geometry, Probability, statistics, etc.</p>
+              </button>
+              
+              <button 
                 onClick={() => handleSubjectSelect('English')}
                 className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
               >
                 <h3 className="font-semibold text-gray-900">English Language</h3>
-                <p className="text-sm text-gray-600">Grammar, comprehension, essay writing</p>
+                <p className="text-sm text-gray-600">Grammar, comprehension, essay writing, Summary, etc.</p>
               </button>
               
               <button 
-                onClick={() => handleSubjectSelect('Mathematics')}
-                className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
+                onClick={() => handleSubjectSelect('Science')}
+                className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-left opacity-50 cursor-not-allowed"
+                disabled
               >
-                <h3 className="font-semibold text-gray-900">Mathematics</h3>
-                <p className="text-sm text-gray-600">Algebra, geometry, statistics</p>
+                <h3 className="font-semibold text-gray-900">Integrated Science</h3>
+                <p className="text-sm text-gray-600">Physics, Chemistry, Biology</p>
+                <p className="text-xs text-gray-500 mt-1">Coming Soon</p>
+              </button>
+              
+              <button 
+                onClick={() => handleSubjectSelect('Social')}
+                className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-left opacity-50 cursor-not-allowed"
+                disabled
+              >
+                <h3 className="font-semibold text-gray-900">Social Studies</h3>
+                <p className="text-sm text-gray-600">History, Geography, Government</p>
+                <p className="text-xs text-gray-500 mt-1">Coming Soon</p>
               </button>
             </div>
             
