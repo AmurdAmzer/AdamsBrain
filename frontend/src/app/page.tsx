@@ -47,7 +47,7 @@ export default function LandingPage() {
 
       {/* 2. Hero Section */}
       <section id="how-it-works" className=" relative py-20 text-center px-4 overflow-hidden text-white" style={{ 
-            backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/hero-bg.jpg')",
+            backgroundImage: "linear-gradient(rgba(0, 0, 30, 0.85), rgba(0, 0, 20, 0.8)), url('/hero-bg.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat"
@@ -56,10 +56,10 @@ export default function LandingPage() {
           <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6 animate-slideIn">
             <span className="mr-2">🎓</span> Trusted by 1000+ Students
           </div>  
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-white animate-slideIn">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-white drop-shadow-md animate-slideIn">
             Pass WASSCE with Confidence
           </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto text-white animate-slideIn" style={{ animationDelay: '0.2s' }}>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto text-white drop-shadow-md animate-slideIn" style={{ animationDelay: '0.2s' }}>
             Get 24/7 AI tutoring with Adams. 
             Study offline, track progress, ace your exams.
           </p>
@@ -175,6 +175,60 @@ export default function LandingPage() {
             Get Started
           </button>
         </div>
+        {/* Subject Selection Modal (reuse from dashboard) */}
+      {showSubjectModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl transform transition-all">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Choose Your Subject</h2>
+            <p className="text-gray-600 mb-8">What would you like to study today?</p>
+            
+            <div className="space-y-3">
+              <button 
+                onClick={() => handleSubjectSelect('Mathematics')}
+                className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
+              >
+                <h3 className="font-semibold text-gray-900">Core Mathematics</h3>
+                <p className="text-sm text-gray-600">Set, Functions, Algebra, geometry, Probability, statistics, etc.</p>
+              </button>
+              
+              <button 
+                onClick={() => handleSubjectSelect('English')}
+                className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
+              >
+                <h3 className="font-semibold text-gray-900">English Language</h3>
+                <p className="text-sm text-gray-600">Grammar, comprehension, essay writing, Summary, etc.</p>
+              </button>
+              
+              <button 
+                onClick={() => handleSubjectSelect('Science')}
+                className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-left opacity-50 cursor-not-allowed"
+                disabled
+              >
+                <h3 className="font-semibold text-gray-900">Integrated Science</h3>
+                <p className="text-sm text-gray-600">Physics, Chemistry, Biology</p>
+                <p className="text-xs text-gray-500 mt-1">Coming Soon</p>
+              </button>
+              
+              <button 
+                onClick={() => handleSubjectSelect('Social')}
+                className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-left opacity-50 cursor-not-allowed"
+                disabled
+              >
+                <h3 className="font-semibold text-gray-900">Social Studies</h3>
+                <p className="text-sm text-gray-600">History, Geography, Government</p>
+                <p className="text-xs text-gray-500 mt-1">Coming Soon</p>
+              </button>
+            </div>
+            
+            <button 
+              onClick={() => setShowSubjectModal(false)}
+              className="mt-4 w-full text-gray-600 hover:text-gray-800"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
       </section>
 
       {/* Testimonials */}
@@ -244,7 +298,7 @@ export default function LandingPage() {
             </div>
             <div>
               <h4 className="font-bold mb-4">Contact</h4>
-              <p className="text-gray-400">support@adamsbrain.com</p>
+              <p className="text-gray-400">amurdamzer@gmail.com</p>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
@@ -252,61 +306,6 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
-
-      {/* Subject Selection Modal (reuse from dashboard) */}
-      {showSubjectModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl transform transition-all">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Choose Your Subject</h2>
-            <p className="text-gray-600 mb-8">What would you like to study today?</p>
-            
-            <div className="space-y-3">
-              <button 
-                onClick={() => handleSubjectSelect('Mathematics')}
-                className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
-              >
-                <h3 className="font-semibold text-gray-900">Core Mathematics</h3>
-                <p className="text-sm text-gray-600">Set, Functions, Algebra, geometry, Probability, statistics, etc.</p>
-              </button>
-              
-              <button 
-                onClick={() => handleSubjectSelect('English')}
-                className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
-              >
-                <h3 className="font-semibold text-gray-900">English Language</h3>
-                <p className="text-sm text-gray-600">Grammar, comprehension, essay writing, Summary, etc.</p>
-              </button>
-              
-              <button 
-                onClick={() => handleSubjectSelect('Science')}
-                className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-left opacity-50 cursor-not-allowed"
-                disabled
-              >
-                <h3 className="font-semibold text-gray-900">Integrated Science</h3>
-                <p className="text-sm text-gray-600">Physics, Chemistry, Biology</p>
-                <p className="text-xs text-gray-500 mt-1">Coming Soon</p>
-              </button>
-              
-              <button 
-                onClick={() => handleSubjectSelect('Social')}
-                className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-left opacity-50 cursor-not-allowed"
-                disabled
-              >
-                <h3 className="font-semibold text-gray-900">Social Studies</h3>
-                <p className="text-sm text-gray-600">History, Geography, Government</p>
-                <p className="text-xs text-gray-500 mt-1">Coming Soon</p>
-              </button>
-            </div>
-            
-            <button 
-              onClick={() => setShowSubjectModal(false)}
-              className="mt-4 w-full text-gray-600 hover:text-gray-800"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
