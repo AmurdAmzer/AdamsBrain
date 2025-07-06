@@ -52,7 +52,7 @@ export default function LandingPage() {
             Pass WASSCE with Confidence
           </h2>
           <p className="text-xl text-gray-600 mb-8">
-            Get 24/7 AI tutoring for English and Mathematics. 
+            Get 24/7 AI tutoring with Adams. 
             Study offline, track progress, ace your exams.
           </p>
           <button 
@@ -94,27 +94,56 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 4. Features */}
-      <section className="py-16 px-4 bg-white">
+      {/* Enhanced Features Section */}
+      <section className="py-20 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <h3 className="text-3xl font-bold text-center mb-12">Features</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 bg-gray-50 rounded-lg">
-              <h4 className="font-semibold mb-2">24/7 AI Tutor</h4>
-              <p className="text-gray-600">Get help anytime, anywhere</p>
-            </div>
-            <div className="p-6 bg-gray-50 rounded-lg">
-              <h4 className="font-semibold mb-2">Past Papers</h4>
-              <p className="text-gray-600">WASSCE papers 2015-2024</p>
-            </div>
-            <div className="p-6 bg-gray-50 rounded-lg">
-              <h4 className="font-semibold mb-2">Offline Mode</h4>
-              <p className="text-gray-600">Study without internet</p>
-            </div>
-            <div className="p-6 bg-gray-50 rounded-lg">
-              <h4 className="font-semibold mb-2">Progress Tracking</h4>
-              <p className="text-gray-600">Monitor your improvement</p>
-            </div>
+          <div className="text-center mb-12">
+            <h3 className="text-4xl font-bold text-gray-900 mb-4">Everything You Need to Succeed</h3>
+            <p className="text-xl text-gray-600">Powerful features designed for WASSCE students</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            {[
+              {
+                icon: '🤖',
+                title: '24/7 AI Tutor',
+                description: 'Get instant help anytime, anywhere',
+                color: 'blue'
+              },
+              {
+                icon: '📚',
+                title: 'Past Questions',
+                description: 'WASSCE past questions',
+                color: 'green'
+              },
+              {
+                icon: '📱',
+                title: 'Offline Mode',
+                description: 'Study without internet',
+                color: 'purple'
+              },
+              {
+                icon: '📈',
+                title: 'Progress Tracking',
+                description: 'Monitor your improvement',
+                color: 'orange'
+              }
+            ].map((feature, index) => (
+              <div 
+                key={index}
+                className="group relative bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Gradient background on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br from-${feature.color}-50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity`}></div>
+                
+                <div className="relative">
+                  <div className="text-5xl mb-4">{feature.icon}</div>
+                  <h4 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h4>
+                  <p className="text-gray-600">{feature.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -133,29 +162,48 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 6. Testimonials */}
-      <section className="py-16 px-4 bg-gray-50">
+      {/* Testimonials */}
+      <section className="py-20 px-4 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto">
-          <h3 className="text-3xl font-bold text-center mb-12">Student Success Stories</h3>
+          <h3 className="text-4xl font-bold text-center text-gray-900 mb-12">Student Success Stories</h3>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow">
-              <p className="text-gray-600 mb-4">
-              &quot;AdamsBrain helped me improve my Math scores from C6 to A1!&quot;
-              </p>
-              <p className="font-semibold">- Sarah, Lagos</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <p className="text-gray-600 mb-4">
-              &quot;I can study even when there&apos;s no internet. It&apos;s amazing!&quot;
-              </p>
-              <p className="font-semibold">- John, Accra</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <p className="text-gray-600 mb-4">
-              &quot;The AI tutor explains better than my teachers sometimes.&quot;
-              </p>
-              <p className="font-semibold">- Mary, Freetown</p>
-            </div>
+            {[
+              {
+                quote: "AdamsBrain helped me improve my Math scores from C6 to A1!",
+                author: "Sarah, Lagos",
+                rating: 5
+              },
+              {
+                quote: "I can study even when there's no internet. It's amazing!",
+                author: "John, Accra",
+                rating: 4
+              },
+              {
+                quote: "The AI tutor explains better than my teachers sometimes.",
+                author: "Mary, Freetown",
+                rating: 5
+              }
+            ].map((testimonial, index) => (
+              <div 
+                key={index}
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              >
+                {/* Rating Stars */}
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                
+                <p className="text-gray-700 mb-6 italic">"{testimonial.quote}"</p>
+                
+                <div className="flex items-center justify-between">
+                  <p className="font-semibold text-gray-900">- {testimonial.author}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -185,7 +233,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-            © 2024 AdamsBrain. All rights reserved.
+            © 2025 AdamsBrain. All rights reserved.
           </div>
         </div>
       </footer>
