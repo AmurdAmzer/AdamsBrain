@@ -55,7 +55,7 @@ export default function ChatPage() {
 
     return (
         <AppLayout>
-            <div className='h-[calc(100vh-4rem)] flex flex-col'>
+            <div className='h-[calc(100dvh-4rem)] flex flex-col'>
             {messages.length === 0 ? (
                 <div className="flex-1 flex flex-col items-center justify-center px-4">
                     <div className="w-full max-w-2xl -mt-32 animate-slideIn">
