@@ -299,6 +299,7 @@ export default function LandingPage() {
             <div>
               <h4 className="font-bold mb-4">Contact</h4>
               <p className="text-gray-400">amurdamzer@gmail.com</p>
+              <p className="text-gray-400">Tel: +1-347-259-5380</p>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
