@@ -68,7 +68,7 @@ export default function ChatPage() {
                     
                     <div className="text-center mb-8">
                         <h1 className="text-3xl font-bold text-gray-900 mb-3">
-                        Hi! I'm Adams, your AI tutor
+                        Hi! I&apos;m Adams, your AI tutor
                         </h1>
                         <p className="text-lg text-gray-600">
                         Ready to help you master <span className="font-semibold text-blue-600">{currentSubject}</span>
