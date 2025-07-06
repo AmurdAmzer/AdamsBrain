@@ -46,21 +46,36 @@ export default function LandingPage() {
       </nav>
 
       {/* 2. Hero Section */}
-      <section className="py-20 text-center px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+      <section className=" relative py-20 text-center px-4 overflow-hidden">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full opacity-10 blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-100 rounded-full opacity-10 blur-3xl"></div>  
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 -z-10"></div>
+        <div className="max-w-4xl mx-auto text-center relative">
+         {/* Badge */}
+          <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6 animate-slideIn">
+            <span className="mr-2">🎓</span> Trusted by 1000+ Students
+          </div>  
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-slideIn">
             Pass WASSCE with Confidence
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto animate-slideIn" style={{ animationDelay: '0.2s' }}>
             Get 24/7 AI tutoring with Adams. 
             Study offline, track progress, ace your exams.
           </p>
-          <button 
-            onClick={() => setShowSubjectModal(true)}
-            className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg hover:bg-blue-700 transition-colors"
-          >
-            Start Learning Free
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slideIn" style={{ animationDelay: '0.3s' }}>
+            <button 
+              onClick={() => setShowSubjectModal(true)}
+              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl text-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              Start Learning Free
+            </button>
+            <button 
+              onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-4 bg-white text-gray-700 rounded-xl text-lg font-semibold hover:bg-gray-50 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200"
+            >
+              See How It Works
+            </button>
+          </div>
         </div>
       </section>
 
@@ -74,7 +89,7 @@ export default function LandingPage() {
                 <span className="text-2xl font-bold text-blue-600">1</span>
               </div>
               <h4 className="font-semibold mb-2">Choose Your Subject</h4>
-              <p className="text-gray-600">Select English or Mathematics</p>
+              <p className="text-gray-600">Select the subject you would like to study</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
