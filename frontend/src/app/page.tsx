@@ -46,7 +46,7 @@ export default function LandingPage() {
       </nav>
 
       {/* 2. Hero Section */}
-      <section id="how-it-works" className="h-[80vh] relative py-20 text-center px-4 overflow-hidden text-white" style={{ 
+      <section id="how-it-works" className="h-[70vh] relative py-20 text-center px-4 overflow-hidden text-white" style={{ 
             backgroundImage: "linear-gradient(rgba(0, 0, 30, 0.85), rgba(0, 0, 20, 0.8)), url('/hero-bg.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
