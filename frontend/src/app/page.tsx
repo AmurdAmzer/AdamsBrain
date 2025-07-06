@@ -36,7 +36,7 @@ export default function LandingPage() {
               Login
             </button>
             <button 
-              onClick={() => router.push('/login')}
+              onClick={() => router.push('/signup')}
               className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
             >
               Sign Up
@@ -46,19 +46,20 @@ export default function LandingPage() {
       </nav>
 
       {/* 2. Hero Section */}
-      <section className=" relative py-20 text-center px-4 overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full opacity-10 blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-100 rounded-full opacity-10 blur-3xl"></div>  
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 -z-10"></div>
-        <div className="max-w-4xl mx-auto text-center relative">
+      <section id="how-it-works" className=" relative py-20 text-center px-4 overflow-hidden text-white" style={{ 
+            backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/hero-bg.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat"
+          }}>
          {/* Badge */}
           <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6 animate-slideIn">
             <span className="mr-2">🎓</span> Trusted by 1000+ Students
           </div>  
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-slideIn">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-white animate-slideIn">
             Pass WASSCE with Confidence
           </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto animate-slideIn" style={{ animationDelay: '0.2s' }}>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto text-white animate-slideIn" style={{ animationDelay: '0.2s' }}>
             Get 24/7 AI tutoring with Adams. 
             Study offline, track progress, ace your exams.
           </p>
@@ -76,7 +77,6 @@ export default function LandingPage() {
               See How It Works
             </button>
           </div>
-        </div>
       </section>
 
       {/* 3. How it Works */}
@@ -212,7 +212,7 @@ export default function LandingPage() {
                   ))}
                 </div>
                 
-                <p className="text-gray-700 mb-6 italic">&quote;{testimonial.quote}&quote;</p>
+                <p className="text-gray-700 mb-6 italic">{`"${testimonial.quote}"`}</p>
                 
                 <div className="flex items-center justify-between">
                   <p className="font-semibold text-gray-900">- {testimonial.author}</p>
