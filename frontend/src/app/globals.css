@@ -45,3 +45,35 @@ body {
 * {
   transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
+
+/* Smooth scroll for the entire app */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #3B82F6;
+  ring-offset: 2px;
+}
