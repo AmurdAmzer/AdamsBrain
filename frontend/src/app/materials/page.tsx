@@ -70,13 +70,25 @@ export default function MaterialsPage() {
                         className="px-5 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                         >
                         <option value="all">📄 All Types</option>
-                        <option value="past_paper">📝 Past Questions</option>
+                        <option value="past_questions">📝 Past Questions</option>
                         <option value="textbook">📖 Notes</option>
                         </select>
                     </div>
                     </div>
                 
                 {/* Enhanced Material Cards */}
+                {filteredMaterials.length === 0 ? (
+                <div className="text-center py-16">
+                    <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-12 h-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">No materials found</h3>
+                    <p className="text-gray-600">Try adjusting your filters or check back later for new content.</p>
+                </div>
+                ) : (
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredMaterials.map(material => (
                     <div 
@@ -136,6 +148,8 @@ export default function MaterialsPage() {
                     </div>
                 ))}
                 </div> 
+                )
+                }
                 </div>
             </AppLayout>
     );
