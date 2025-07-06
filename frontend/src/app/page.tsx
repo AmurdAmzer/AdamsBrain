@@ -197,7 +197,7 @@ export default function LandingPage() {
                   ))}
                 </div>
                 
-                <p className="text-gray-700 mb-6 italic">"{testimonial.quote}"</p>
+                <p className="text-gray-700 mb-6 italic">&quote;{testimonial.quote}&quote;</p>
                 
                 <div className="flex items-center justify-between">
                   <p className="font-semibold text-gray-900">- {testimonial.author}</p>
