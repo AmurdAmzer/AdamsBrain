@@ -37,7 +37,7 @@ export default function LandingPage() {
             </button>
             <button 
               onClick={() => router.push('/signup')}
-              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
             >
               Sign Up
             </button>
@@ -66,7 +66,7 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slideIn" style={{ animationDelay: '0.3s' }}>
             <button 
               onClick={() => setShowSubjectModal(true)}
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl text-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl text-lg font-semibold hover:from-blue-600 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               Start Learning Free
             </button>
