@@ -60,7 +60,7 @@ export default function ChatPage() {
                 timestamp: new Date()
             }
             setMessages(prev => [...prev, aiMessage])
-        } catch (error) {
+        } catch (_error) {
             // Show error message if something goes wrong
             const errorMessage: Message = {
                 id: (Date.now() + 1).toString(),
