@@ -1,6 +1,6 @@
 import express from 'express';
 import { getAIResponse } from '../services/openai';
-import { ChatSession } from '../models/chatSession';
+import { ChatSession } from '../models/ChatSession';
 
 const router = express.Router();
 
