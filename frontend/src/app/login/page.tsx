@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp] = useState(false);
   const [error, setError] = useState('');
   const { signIn, signUp } = useAuth();
   const router = useRouter();
