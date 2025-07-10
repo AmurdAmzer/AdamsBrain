@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import testRoutes from './routes/test'
 import studentRoutes from './routes/students'
+import chatRoutes from './routes/chat';
 
 // Load environment variables from .env file
 dotenv.config()
@@ -34,6 +35,7 @@ app.use(express.json())   // Parse JSON from requests
 // Routes
 app.use('/api/test', testRoutes)
 app.use('/api/students', studentRoutes)
+app.use('/api/chat', chatRoutes)
 
 
 // Basic health check
@@ -57,8 +59,8 @@ const startServer = async () => {
   await connectDB()  // Connect to database first
   
   app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`)
-    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`)
+    console.log(`Server running on http://localhost:${PORT}`)
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`)
   })
 }
 

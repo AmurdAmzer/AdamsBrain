@@ -12,7 +12,7 @@ router.post('/message', async (req, res) => {
         // Get AI response
         const aiResponse = await getAIResponse(subject, message);
         
-        // Save to database (we'll add this next)
+        // Save to database (To Do: Implement ChatSession model)
         
         res.json({ 
             success: true,
