@@ -1,8 +1,9 @@
 import OpenAI from 'openai';
+import { config } from '../config/env';
 
 // Initialize OpenAI client (like connecting to the AI's brain)
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY 
+    apiKey: config.openai.apiKey // Use the key from our config 
 });
 
 // Function to get AI response for student questions
