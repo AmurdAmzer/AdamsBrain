@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -76,13 +77,12 @@ export default function LoginPage() {
           </div>
 
           <div className="text-center">
-            <button
-              type="button"
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="text-indigo-600 hover:text-indigo-500"
-            >
-              {isSignUp ? 'Already have an account? Sign in' : "Don't have an account? Sign up"}
-            </button>
+          <Link
+            href="/signup"
+            className="text-indigo-600 hover:text-indigo-500"
+          >
+            Don't have an account? Sign up
+          </Link>
           </div>
         </form>
       </div>
