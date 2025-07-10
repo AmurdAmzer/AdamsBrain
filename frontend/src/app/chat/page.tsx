@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import AppLayout from '@/components/layout/AppLayout'
+import { sendMessage } from '@/services/api/chat'
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function ChatPage() {
     // Message type definition
@@ -18,6 +20,8 @@ export default function ChatPage() {
     const [isLoading, setIsLoading] = useState(false)
     const [currentSubject, setCurrentSubject] = useState<'English' | 'Mathematics'>('English')
     
+    const { user } = useAuth();
+
     useEffect(() => {
         const savedSubject = localStorage.getItem('selectedSubject') as 'English' | 'Mathematics'
         if (savedSubject) {
@@ -25,7 +29,7 @@ export default function ChatPage() {
         }
     }, [])
 
-    const handleSend = () => {
+    const handleSend = async () => {
         if (!inputText.trim()) return
     
         // Add user message
@@ -39,19 +43,37 @@ export default function ChatPage() {
         setMessages(prev => [...prev, userMessage])
         setInputText('')
         setIsLoading(true)
+
+        try {
+            // Get real AI response from your backend
+            const aiResponse = await sendMessage(
+                user?.uid || 'anonymous',
+                currentSubject,  // This will be 'English', 'Mathematics', 'Science', or 'Social Studies' 
+                inputText
+            );
     
-        // Simulate AI response
-        setTimeout(() => {
+            // Add AI response to chat
             const aiMessage: Message = {
                 id: (Date.now() + 1).toString(),
-                text: "I'm your AI tutor! I'm waiting to be connected to GPT-4.",
+                text: aiResponse,
                 sender: 'ai',
                 timestamp: new Date()
             }
             setMessages(prev => [...prev, aiMessage])
+        } catch (error) {
+            // Show error message if something goes wrong
+            const errorMessage: Message = {
+                id: (Date.now() + 1).toString(),
+                text: 'Sorry, I encountered an error. Please try again.',
+                sender: 'ai',
+                timestamp: new Date()
+            }
+            setMessages(prev => [...prev, errorMessage])
+        } finally {
             setIsLoading(false)
-        }, 1000)
+        }
     }
+
 
     return (
         <AppLayout>

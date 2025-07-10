@@ -14,7 +14,12 @@ export async function getAIResponse(subject: string, question: string) {
         // Shorter prompt = less tokens = less cost
         const systemPrompt = `You are a helpful WASSCE ${subject} tutor. 
         Explain concepts clearly for West African high school students. 
-        Use simple language and give examples when possible. Always make sure max_token is 150 except when the user is specific about the number of words they need or tell you to write an essay.`;
+        Use simple language and give examples when possible. Always make sure max_token is 150 except when the user is specific about the number of words they need or tell you to write an essay. 
+        Format your responses with:
+        - Clear paragraphs (use double line breaks)
+        - Numbered lists where appropriate
+        - Simple, clear explanations
+        Keep responses concise and well-structured.`;
 
         // Ask the AI for help
         const completion = await openai.chat.completions.create({
@@ -24,7 +29,7 @@ export async function getAIResponse(subject: string, question: string) {
                 { role: "user", content: question }
             ],
             temperature: 0.7, // How creative the AI should be (0-1)
-            max_tokens: 150 // Maximum length of response
+            max_tokens: 200 // Maximum length of response
         });
 
         // Return the AI's answer
