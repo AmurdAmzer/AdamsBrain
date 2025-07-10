@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -56,6 +56,20 @@ export default function SignupPage() {
         setError(error.message)
       } else {
         setError('An error occurred during Google signup')
+      }
+    }
+  }
+
+  const handleFacebookSignup = async () => {
+    try {
+      const provider = new FacebookAuthProvider()
+      await signInWithPopup(auth, provider)
+      router.push('/dashboard')
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message)
+      } else {
+        setError('An error occurred during Facebook signup')
       }
     }
   }
@@ -208,9 +222,22 @@ export default function SignupPage() {
                 Continue with Google
               </button>
               
-              {/* For West Africa, WhatsApp is very popular but not suitable for auth
-                  Facebook is also popular but declining among youth
-                  Stick with Google for now */}
+              <button
+                type="button"
+                onClick={handleFacebookSignup}
+                className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-all duration-300"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="#1877F2"
+                    className="w-5 h-5 mr-2"
+                >
+                    <path d="M22.675 0h-21.35C.592 0 0 .593 0 1.326v21.348C0 23.408.592 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.463.099 2.794.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116C23.407 24 24 23.408 24 22.674V1.326C24 .593 23.407 0 22.675 0z"/>
+                </svg>
+                Continue with Facebook
+              </button>
+
             </div>
           </div>
           
