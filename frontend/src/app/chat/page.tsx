@@ -163,7 +163,7 @@ export default function ChatPage() {
                                 : 'bg-white border border-gray-100'
                             }`}
                             >
-                            <p className={message.sender === 'user' ? 'text-white' : 'text-gray-800'}>
+                            <p className={`${message.sender === 'user' ? 'text-white' : 'text-gray-800'} whitespace-pre-wrap`}>
                                 {message.text}
                             </p>
                             </div>
