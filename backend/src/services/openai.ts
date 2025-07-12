@@ -29,7 +29,8 @@ export async function getAIResponse(subject: string, question: string) {
                 { role: "user", content: question }
             ],
             temperature: 0.7, // How creative the AI should be (0-1)
-            max_tokens: 200 // Maximum length of response
+            max_tokens: 300, // Maximum length of response
+            stream: true // Enable streaming for real-time response
         });
 
         // Return the AI's answer
