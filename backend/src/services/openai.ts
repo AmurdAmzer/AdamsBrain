@@ -33,8 +33,8 @@ export async function getAIResponse(subject: string, question: string) {
             stream: true // Enable streaming for real-time response
         });
 
-        // Return the AI's answer
-        return completion.choices[0].message.content;
+        // Return stream
+        return stream; 
     } catch (error) {
         console.error('OpenAI Error:', error);
         throw new Error('Failed to get AI response');
