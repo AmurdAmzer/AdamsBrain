@@ -6,7 +6,29 @@ const openai = new OpenAI({
     apiKey: config.openai.apiKey // Use the key from our config 
 });
 
-// Function to get AI response for student questions
+// Regular version (non-streaming)
+export async function getAIResponse(subject: string, question: string) {
+    try {
+        const systemPrompt = `WASSCE ${subject} tutor. Give clear, concise answers.`;
+
+        const completion = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "system", content: systemPrompt },
+                { role: "user", content: question }
+            ],
+            temperature: 0.7,
+            max_tokens: 300
+        });
+
+        return completion.choices[0].message.content;
+    } catch (error) {
+        console.error('OpenAI Error:', error);
+        throw new Error('Failed to get AI response');
+    }
+}
+
+// Streaming version
 export async function getAIResponseStream(subject: string, question: string) {
     try {
         // Create a system prompt based on the subject
@@ -19,7 +41,7 @@ export async function getAIResponseStream(subject: string, question: string) {
 
 
         // Ask the AI for help
-        const completion = await openai.chat.completions.create({
+        const stream = await openai.chat.completions.create({
             model: "gpt-3.5-turbo", // The AI model (like choosing a teacher)
             messages: [
                 { role: "system", content: systemPrompt },
