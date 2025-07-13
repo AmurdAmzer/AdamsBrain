@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import AppLayout from '@/components/layout/AppLayout'
-import { sendMessage } from '@/services/api/chat'
+import { sendMessage, sendMessageStream } from '@/services/api/chat'
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function ChatPage() {
@@ -33,46 +33,40 @@ export default function ChatPage() {
         if (!inputText.trim()) return
     
         // Add user message
-        const userMessage: Message = {
+        const aiMessage: Message = {
             id: Date.now().toString(),
-            text: inputText,
-            sender: 'user',
+            text: '',
+            sender: 'ai',
             timestamp: new Date()
         }
         
-        setMessages(prev => [...prev, userMessage])
-        setInputText('')
-        setIsLoading(true)
+        setMessages(prev => [...prev, aiMessage]);
 
         try {
-            // Get real AI response from your backend
-            const aiResponse = await sendMessage(
+            await sendMessageStream(
                 user?.uid || 'anonymous',
-                currentSubject,  // This will be 'English', 'Mathematics', 'Science', or 'Social Studies' 
-                inputText
+                currentSubject,
+                inputText,
+                (chunk) => {
+                    // Update message as chunks arrive
+                    setMessages(prev => prev.map(msg => 
+                        msg.id === aiMessage.id 
+                            ? { ...msg, text: msg.text + chunk }
+                            : msg
+                    ));
+                }
             );
-    
-            // Add AI response to chat
-            const aiMessage: Message = {
-                id: (Date.now() + 1).toString(),
-                text: aiResponse,
-                sender: 'ai',
-                timestamp: new Date()
-            }
-            setMessages(prev => [...prev, aiMessage])
-        } catch {
-            // Show error message if something goes wrong
-            const errorMessage: Message = {
-                id: (Date.now() + 1).toString(),
-                text: 'Sorry, I encountered an error. Please try again.',
-                sender: 'ai',
-                timestamp: new Date()
-            }
-            setMessages(prev => [...prev, errorMessage])
+        } catch (error) {
+            console.error('Chat error:', error);
+            setMessages(prev => prev.map(msg => 
+                msg.id === aiMessage.id 
+                    ? { ...msg, text: 'Sorry, I encountered an error. Please try again.' }
+                    : msg
+            ));
         } finally {
-            setIsLoading(false)
+            setIsLoading(false);
         }
-    }
+    };
 
 
     return (
