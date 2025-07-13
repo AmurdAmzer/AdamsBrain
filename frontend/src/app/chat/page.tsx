@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import AppLayout from '@/components/layout/AppLayout'
-import { sendMessage, sendMessageStream } from '@/services/api/chat'
+import { sendMessageStream } from '@/services/api/chat'
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function ChatPage() {

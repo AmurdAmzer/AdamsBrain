@@ -74,7 +74,7 @@ export async function sendMessageStream(
                     if (parsed.content) {
                         onChunk(parsed.content);
                     }
-                } catch (e) {
+                } catch {
                     // Ignore JSON parse errors
                 }
             }
