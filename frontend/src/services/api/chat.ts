@@ -32,3 +32,56 @@ export async function sendMessage(userId: string, subject: string, message: stri
     throw error;
   }
 }
+
+export async function sendMessageStream(
+    userId: string, 
+    subject: string, 
+    message: string,
+    onChunk: (chunk: string) => void
+) {
+  try {
+    const response = await fetch(`${API_URL}/api/chat/message/stream`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId,
+        subject,
+        message
+      })
+    });
+
+    const reader = response.body?.getReader();
+    const decoder = new TextDecoder();
+
+    if (!reader) throw new Error('No reader available');
+
+    while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        
+        const chunk = decoder.decode(value);
+        const lines = chunk.split('\n');
+        
+        for (const line of lines) {
+            if (line.startsWith('data: ')) {
+                const data = line.slice(6);
+                if (data === '[DONE]') return;
+                
+                try {
+                    const parsed = JSON.parse(data);
+                    if (parsed.content) {
+                        onChunk(parsed.content);
+                    }
+                } catch (e) {
+                    // Ignore JSON parse errors
+                }
+            }
+        }
+    }
+  } catch (error) {
+    console.error('Stream API Error:', error);
+    throw error;
+  }
+}
