@@ -107,7 +107,11 @@ export default function ChatPage() {
                     {/* Suggestion Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                         <button 
-                        onClick={() => setInputText("Explain quadratic equations")}
+                        onClick={() => setInputText(
+                            currentSubject === 'Mathematics' 
+                                ? "Explain quadratic equations" 
+                                : "What are verb tenses?"
+                        )}
                         className="p-4 bg-white border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all text-left group"
                         >
                         <p className="font-medium text-gray-900 group-hover:text-blue-600">💡 Try asking:</p>
