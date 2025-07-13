@@ -7,7 +7,7 @@ const openai = new OpenAI({
 });
 
 // Function to get AI response for student questions
-export async function getAIResponse(subject: string, question: string) {
+export async function getAIResponseStream(subject: string, question: string) {
     try {
         // Create a system prompt based on the subject
         // This tells the AI "who" it should be
