@@ -59,7 +59,7 @@ export default function ChatPage() {
             await sendMessageStream(
                 user?.uid || 'anonymous',
                 currentSubject,
-                inputText,
+                messageText,
                 (chunk) => {
                     // Update message as chunks arrive
                     setMessages(prev => prev.map(msg => 
