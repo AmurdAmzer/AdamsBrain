@@ -31,9 +31,9 @@ export default function ChatPage() {
 
     const handleSend = async () => {
         if (!inputText.trim()) return
-    
+        
+        const messageText = inputText;
         // Add user message
-           // Add user message FIRST
         const userMessage: Message = {
             id: Date.now().toString(),
             text: inputText,
@@ -42,12 +42,12 @@ export default function ChatPage() {
         }
         
         setMessages(prev => [...prev, userMessage]);
-        setInputText(''); // Clear input HERE
+        setInputText(''); // Clear input
         setIsLoading(true);
 
         // Create AI message placeholder
         const aiMessage: Message = {
-            id: Date.now().toString(),
+            id: (Date.now() +1).toString(),
             text: '',
             sender: 'ai',
             timestamp: new Date()
