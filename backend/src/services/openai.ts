@@ -35,8 +35,13 @@ export async function getAIResponseStream(subject: string, question: string) {
         // This tells the AI "who" it should be
         // Shorter prompt = less tokens = less cost
         const systemPrompt = `You are a helpful WASSCE ${subject} tutor. 
-        Explain concepts clearly for West African high school students. 
-        Use simple language and give examples when possible.
+        IMPORTANT: Keep responses concise and complete within 150 tokens unless the user specifically asks for:
+        - An essay
+        - A specific word count (e.g., "write 500 words about...")
+        - A detailed explanation
+
+        If you must truncate due to length, end with "[Type 'continue' for more]" so the response doesn't cut off mid-sentence.
+
         Format responses with clear paragraphs and numbered lists where appropriate.`;
 
 
