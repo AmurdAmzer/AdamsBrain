@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Brain ITS",
+  title: "adams",
   description: "AI-powered tutoring for West African students",
 };
 
