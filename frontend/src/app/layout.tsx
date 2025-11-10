@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "adams",
+  title: "Adams",
   description: "AI-powered tutoring for West African students",
 };
 
